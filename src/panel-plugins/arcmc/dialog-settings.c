@@ -773,7 +773,8 @@ arcmc_show_settings_dialog (void)
                                   settings_builtin_get_checked,
                                   settings_builtin_set_checked,
                                   builtin_rows,
-                                  settings_builtin_cycle };
+                                  settings_builtin_cycle,
+                                  NULL };
 
         table_set_datasource (tbl_builtin, ds);
     }
@@ -804,6 +805,7 @@ arcmc_show_settings_dialog (void)
                                   settings_get_checked,
                                   settings_set_checked,
                                   ext_checks,
+                                  NULL,
                                   NULL };
 
         table_set_datasource (tbl_ext, ds);

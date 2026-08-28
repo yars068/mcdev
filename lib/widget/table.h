@@ -48,6 +48,8 @@ typedef struct
     void *data;
     /* step a TABLE_COL_CHOICE cell, dir +1 or -1; last, so older datasources still fit */
     void (*cycle_choice) (void *data, int row, int col, int dir);
+    /* optional: color of a cell that is not on the current row, -1 for the default */
+    int (*get_color) (const void *data, int row, int col);
 } table_datasource_t;
 
 typedef struct
@@ -66,6 +68,9 @@ typedef struct
     gboolean scrollbar;          /* draw scrollbar when rows > visible lines */
     gboolean scrollbar_on_frame; /* last column lies on the frame, so always paint it */
     int color_idx;               /* override normal color: DLG_COLOR_* index, or -1 for default */
+    int normal_color;            /* absolute skin color for rows, -1 = dialog colors */
+    int selected_color;          /* absolute skin color for the current row, -1 = dialog colors */
+    int scrollbar_color;         /* absolute skin color for the scrollbar, -1 = dialog frame */
     gboolean has_check_cols;     /* TRUE when at least one col has TABLE_COL_CHECK */
     gboolean has_choice_cols;    /* a choice column adds the column cursor */
 } WTable;
